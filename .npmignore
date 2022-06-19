@@ -1,9 +1,0 @@
-.github
-node_modules
-pages
-dist
-tests
-examples
-package-lock.json
-.jsconfig.json
-.babelrc.json
