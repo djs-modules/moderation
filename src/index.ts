@@ -1,2 +1,1 @@
-export * from "./classes/Moderation";
-export * from "./classes/Logger";
+export { Moderation } from "./classes/Moderation";
