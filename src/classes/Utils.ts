@@ -1,8 +1,8 @@
+import { Options, GuildData, defaultOptions, Events } from "../constants";
 import { Client, Guild, GuildMember, Invite } from "discord.js";
-import { Options, GuildData, defaultOptions } from "../constants";
+import { TypedEmitter } from "tiny-typed-emitter";
 import { DBManager } from "./DBManager";
 import { Logger } from "./Logger";
-import { Base } from "./Base";
 
 export interface Utils {
   client: Client;
@@ -17,9 +17,9 @@ export interface Utils {
  *
  * @class
  * @classdesc Class that including some methods.
- * @extends {Base}
+ * @extends {TypedEmitter<Events>}
  */
-export class Utils extends Base {
+export class Utils extends TypedEmitter<Events> {
   /**
    *
    * @param {Client} client Discord.JS Client
@@ -98,6 +98,7 @@ export class Utils extends Base {
         warns: [],
         mutes: [],
         immunityUsers: [],
+        lockdowns: [],
         systems: {
           antiInvite: false,
           antiJoin: false,
@@ -109,6 +110,44 @@ export class Utils extends Base {
       });
 
       return res(await this.database.fetch(guild.id));
+    });
+  }
+
+  /**
+   * Method that checking Guild's Database to match last version
+   *
+   * @param {Guild} guild Discord Guild
+   * @returns {Promise<boolean>}
+   */
+  checkData(guild: Guild): Promise<boolean> {
+    return new Promise(async (res, rej) => {
+      const defaultValues = {
+        guildID: guild.id,
+        muteRole: null,
+        autoRole: null,
+        warns: [],
+        mutes: [],
+        immunityUsers: [],
+        lockdowns: [],
+        systems: {
+          antiInvite: false,
+          antiJoin: false,
+          antiLink: false,
+          antiSpam: false,
+          autoRole: false,
+          ghostPing: false,
+        },
+      };
+
+      const data = await this.getGuild(guild);
+      for (const key in defaultValues) {
+        if (!data.hasOwnProperty(key)) {
+          data[key] = defaultValues[key];
+        }
+      }
+
+      await this.setData(guild, data);
+      return res(true);
     });
   }
 
@@ -137,7 +176,7 @@ export class Utils extends Base {
     return new Promise(async (res, rej) => {
       for (const [id, guild] of this.client.guilds.cache) {
         var data = await this.database.fetch(guild.id);
-        if (data === null) {
+        if (!data) {
           await this.createGuild(guild);
           data = await this.database.fetch(guild.id);
         }
@@ -148,7 +187,7 @@ export class Utils extends Base {
           const mute = data.mutes[i];
 
           if (mute.type === "mute") continue;
-          if (data.muteRole === null) continue;
+          if (!data.muteRole) continue;
 
           const muteRole = guild.roles.cache.get(data.muteRole);
           if (!muteRole) {
@@ -171,28 +210,25 @@ export class Utils extends Base {
             var newMutes = data.mutes.filter((m) => m.memberID !== member.id);
             await this.database.setProp(guild.id, "mutes", newMutes);
 
-            await member.roles
-              .remove(muteRole)
-              .then(() => {
-                mute.unmutedAt = Date.now();
-                this.emit("unmuteMember", mute);
-              })
-              .catch((err) => {
-                return rej(this.logger.error(err.message));
-              });
+            try {
+              await member.roles.remove(muteRole);
+
+              mute.unmutedAt = Date.now();
+              this.emit("muteEnd", mute);
+            } catch (err) {
+              return rej(this.logger.error(err.message));
+            }
           } else {
             const delay = mute.unmutedAt - Date.now();
-
             setTimeout(async () => {
-              await member.roles
-                .remove(muteRole)
-                .then(() => {
-                  mute.unmutedAt = Date.now();
-                  this.emit("unmuteMember", mute);
-                })
-                .catch((err) => {
-                  return rej(this.logger.error(err.message));
-                });
+              try {
+                await member.roles.remove(muteRole);
+
+                mute.unmutedAt = Date.now();
+                this.emit("muteEnd", mute);
+              } catch (err) {
+                return rej(this.logger.error(err.message));
+              }
             }, delay);
           }
         }
@@ -210,18 +246,6 @@ export class Utils extends Base {
    */
   wait(ms: number): Promise<unknown> {
     return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  /**
-   * @returns {Promise<boolean>}
-   */
-  checkOptions(): Promise<boolean> {
-    return new Promise(async (res, rej) => {
-      var options = this.options;
-      if (typeof options === "undefined") this.options = defaultOptions;
-
-      return res(true);
-    });
   }
 
   /**

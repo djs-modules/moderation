@@ -1,3 +1,5 @@
+import { TextChannel } from "discord.js";
+
 export type MuteTypes = "mute" | "tempmute";
 
 export const ERROR_MESSAGES = {
@@ -47,13 +49,16 @@ export const defaultOptions: Options = {
 };
 
 export interface Events {
-  muteMember: (data: MutesData) => void;
-  unmuteMember: (data: MutesData) => void;
+  muteCreate: (data: MutesData) => void;
+  muteEnd: (data: MutesData) => void;
 
+  warnCreate: (data: WarnsData) => void;
+  warnDelete: (data: WarnsData) => void;
   warnKick: (data: WarnsData) => void;
   warnMute: (data: WarnsData) => void;
-  warnAdd: (data: WarnsData) => void;
-  warnRemove: (data: WarnsData) => void;
+
+  lockdownStart: (channel: TextChannel, reason: string) => void;
+  lockdownEnd: (channel: TextChannel, reason: string) => void;
 }
 
 export interface GuildData {
@@ -63,6 +68,7 @@ export interface GuildData {
   warns: WarnsData[];
   mutes: MutesData[];
   immunityUsers: ImmunityUsersData[];
+  lockdowns: LockdownsData[];
   systems: ModuleSystems;
 }
 
@@ -90,6 +96,13 @@ export interface WarnsData {
   moderatorID: string;
   channelID: string;
   reason: string;
+}
+
+export interface LockdownsData {
+  id: number;
+  channelID: string;
+  reason: string;
+  date: number;
 }
 
 export interface Options {

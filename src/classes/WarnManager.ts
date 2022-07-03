@@ -1,9 +1,9 @@
 import { Client, GuildMember, Interaction, Message } from "discord.js";
-import { GuildData, Options, WarnsData } from "../constants";
+import { Events, GuildData, Options, WarnsData } from "../constants";
+import { TypedEmitter } from "tiny-typed-emitter";
 import { MuteManager } from "./MuteManager";
 import { Logger } from "./Logger";
 import { Utils } from "./Utils";
-import { Base } from "./Base";
 
 export interface WarnManager {
   client: Client;
@@ -19,9 +19,9 @@ export interface WarnManager {
  *
  * @class
  * @classdesc Class that Handles/Creates/Removes Warns
- * @extends {Base}
+ * @extends {TypedEmitter<Events>}
  */
-export class WarnManager extends Base {
+export class WarnManager extends TypedEmitter<Events> {
   /**
    *
    * @param {Client} client Discord.JS Client
@@ -79,7 +79,7 @@ export class WarnManager extends Base {
 
       const { warns } = await this.utils.getGuild(member.guild);
       const memberWarns = warns.filter((warn) => warn.memberID === member.id);
-      if (!memberWarns?.length) return res(null);
+      if (!memberWarns.length) return res(null);
 
       const lastWarn = memberWarns[memberWarns.length - 1];
       if (!lastWarn) return res(null);
@@ -135,7 +135,7 @@ export class WarnManager extends Base {
 
       data.warns.push(warnData);
 
-      this.emit("warnAdd", warnData);
+      this.emit("warnCreate", warnData);
       await this.utils.setData(member.guild, data);
       res(warnData);
 
@@ -178,7 +178,7 @@ export class WarnManager extends Base {
       const changedWarns = data.warns.filter((x) => x.id !== lastWarn.id);
       await this.utils.database.setProp(member.guild.id, "warns", changedWarns);
 
-      this.emit("warnRemove", warnData);
+      this.emit("warnDelete", warnData);
       return res(warnData);
     });
   }
@@ -237,6 +237,7 @@ export class WarnManager extends Base {
           .kick("User reached 6 warns | AutoKick.")
           .then(async () => {
             data.warns.filter((w: WarnsData) => w.memberID !== member.id);
+
             await this.utils.setData(member.guild, data);
             await this.emit("warnKick", warnData);
 

@@ -7,7 +7,6 @@ import {
 import { Client, Guild } from "discord.js";
 import { Logger } from "./Logger";
 import { Utils } from "./Utils";
-import { Base } from "./Base";
 
 export interface SystemsManager {
   client: Client;
@@ -17,7 +16,13 @@ export interface SystemsManager {
   logger: Logger;
 }
 
-export class SystemsManager extends Base {
+/**
+ * System Manager Class
+ *
+ * @class
+ * @classdesc Class that controls Guild Systems
+ */
+export class SystemsManager {
   /**
    *
    * @param {Client} client Discord.JS Client
@@ -26,8 +31,6 @@ export class SystemsManager extends Base {
    * @constructor
    */
   constructor(client: Client, options: Options) {
-    super();
-
     /**
      * Discord Client
      * @type {Client}

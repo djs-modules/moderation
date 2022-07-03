@@ -59,11 +59,8 @@ export class ImmunityUsers {
       }
 
       const data = await this.utils.getGuild(member.guild);
-      const fastCheck = data.immunityUsers.find(
-        (m) => m.memberID === member.id
-      );
-
-      if (fastCheck) return res(false);
+      const check = data.immunityUsers.find((m) => m.memberID === member.id);
+      if (check) return res(false);
 
       const userData: ImmunityUsersData = {
         memberID: member.id,
@@ -92,14 +89,10 @@ export class ImmunityUsers {
       }
 
       const data = await this.utils.getGuild(member.guild);
-      const fastCheck = data.immunityUsers.find(
-        (m) => m.memberID === member.id
-      );
-
-      if (!fastCheck) return res(false);
+      const check = data.immunityUsers.find((m) => m.memberID === member.id);
+      if (!check) return res(false);
 
       data.immunityUsers.filter((m) => m.memberID !== member.id);
-
       await this.utils.setData(member.guild, data);
 
       return res(true);

@@ -1,6 +1,6 @@
 {
   "name": "@djs-modules/moderation",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "description": "\"@djs-modules/moderation\" is a module that allows you to make a moderation system in your Discord bot.",
   "main": "dist/index.js",
   "types": "src/typings/Moderation.d.ts",

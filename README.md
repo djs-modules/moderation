@@ -8,7 +8,8 @@
 <span><strong>[🔑] Built in TypeScript</strong></span> <br />
 <span><strong>[⚙] 100% Promise-based</strong></span> <br />
 <span><strong>[🙂] TypeScript Support</strong></span> <br />
-<span><strong>[👍] Discord.JS v13</strong></span>
+<span><strong>[👍] Discord.JS v13</strong></span> <br />
+<span><strong>[❗] Remute if member rejoins server</strong></span>
 
 ## Requirements
 

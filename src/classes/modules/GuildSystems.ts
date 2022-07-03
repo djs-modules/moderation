@@ -9,7 +9,6 @@ import {
 import { Options, links } from "../../constants";
 import { Logger } from "../Logger";
 import { Utils } from "../Utils";
-import { Base } from "../Base";
 
 export interface GuildSystems {
   client: Client;
@@ -19,7 +18,13 @@ export interface GuildSystems {
   logger: Logger;
 }
 
-export class GuildSystems extends Base {
+/**
+ * Guild Systems Class
+ *
+ * @class
+ * @classdesc Class that Handles Guild Systems
+ */
+export class GuildSystems {
   /**
    *
    * @param {Client} client Discord.JS Client
@@ -28,8 +33,6 @@ export class GuildSystems extends Base {
    * @constructor
    */
   constructor(client: Client, options: Options) {
-    super();
-
     /**
      * Discord Client
      * @type {Client}
@@ -68,25 +71,28 @@ export class GuildSystems extends Base {
           this.logger.warn('Specify "GuildMember" in Systems#antiJoin')
         );
 
-      await member
-        .kick("Anti-Join System.")
-        .then((mem) => {
-          const embed = new MessageEmbed()
-            .setColor("BLURPLE")
-            .setTitle("Anti-Join System.")
-            .setDescription(
-              `**Hello! You were kicked from "${member.guild.name}"!**\n› **Reason**: **Anti-Join System.**`
-            );
+      try {
+        const m = await member.kick("Anti-Join System.");
 
-          mem.send({
-            embeds: [embed],
-          });
+        const embed = new MessageEmbed()
+          .setColor("BLURPLE")
+          .setAuthor({
+            name: m.user.username,
+            iconURL: m.displayAvatarURL({ dynamic: true }),
+          })
+          .setTitle("Anti-Join System.")
+          .setDescription(
+            `**Hello! You were kicked from "${member.guild.name}"!**\n› **Reason**: **Anti-Join System.**`
+          );
 
-          return res(true);
-        })
-        .catch((err) => {
-          return rej(this.logger.warn(err));
+        m.send({
+          embeds: [embed],
         });
+
+        return res(true);
+      } catch (err) {
+        return rej(err.message);
+      }
     });
   }
 
@@ -111,10 +117,10 @@ export class GuildSystems extends Base {
 
         const embed = new MessageEmbed()
           .setColor("YELLOW")
-          .setAuthor(
-            message.author.username,
-            message.author.displayAvatarURL({ dynamic: true })
-          )
+          .setAuthor({
+            name: message.author.username,
+            iconURL: message.author.displayAvatarURL({ dynamic: true }),
+          })
           .setTitle("Anti-Link System.")
           .setDescription("**Links are restricted on this server!**");
 
@@ -136,12 +142,12 @@ export class GuildSystems extends Base {
    */
   ghostPing(message: Message): Promise<boolean> {
     return new Promise(async (res, rej) => {
-      if (!message)
+      if (!message) {
         return rej(this.logger.warn('Specify "Message" in Systems#ghostPing!'));
-      if (!message.mentions) return;
-      if (!message.mentions.members) return;
+      }
 
-      if (message.mentions.members.size) return res(true);
+      if (!message.mentions) return res;
+      if (message.mentions && !message.mentions.members) return res(false);
       else return res(false);
     });
   }
@@ -154,8 +160,10 @@ export class GuildSystems extends Base {
    */
   antiInvite(invite: Invite): Promise<boolean> {
     return new Promise(async (res, rej) => {
-      if (!invite)
+      if (!invite) {
         return rej(this.logger.warn('Specify "Invite" in Systems#antiInvite!'));
+      }
+
       if (!invite.inviter) return;
 
       const immunityCheck = await this.utils.checkImmunity(invite);
@@ -163,21 +171,25 @@ export class GuildSystems extends Base {
 
       const embed = new MessageEmbed()
         .setColor("YELLOW")
-        .setAuthor(
-          invite.inviter.username,
-          invite.inviter.displayAvatarURL({ dynamic: true })
-        )
+        .setAuthor({
+          name: invite.inviter.username,
+          iconURL: invite.inviter.displayAvatarURL({ dynamic: true }),
+        })
         .setTitle("Anti-Invite System.")
         .setDescription(
           "**Invites are restricted in this server! Invite has been deleted!**"
         );
 
-      await invite.delete("Anti-Invite System.");
-      await (invite.channel as TextChannel).send({
-        embeds: [embed],
-      });
+      try {
+        await invite.delete("Anti-Invite System.");
+        await (invite.channel as TextChannel).send({
+          embeds: [embed],
+        });
 
-      return res(true);
+        return res(true);
+      } catch (err) {
+        return rej(err.message);
+      }
     });
   }
 }

@@ -67,7 +67,7 @@ client.on("messageCreate", async (msg) => {
       return;
     }
 
-    msg.reply("Muted");
+    msg.reply(`${member.toString()} got muted for ${reason}`);
     return;
   } else if (cmd === "tempmute") {
     if (!msg.member!.permissions.has(["ADMINISTRATOR"])) return; // You can change required permissions
@@ -98,7 +98,19 @@ client.on("messageCreate", async (msg) => {
 
     if (!reason) reason = "No Reason Provided.";
 
-    moderation.mutes.create("tempmute", msg, member, reason, ms(time));
+    const data = await moderation.mutes.create(
+      "tempmute",
+      msg,
+      member,
+      reason,
+      ms(time)
+    );
+    if ("message" in data) {
+      msg.reply(data.message!);
+      return;
+    }
+
+    msg.reply(`${member.toString()} got muted for ${reason}`);
     return;
   } else if (cmd === "unmute") {
     if (!msg.member!.permissions.has(["ADMINISTRATOR"])) return; // You can change required permissions
@@ -132,7 +144,7 @@ client.on("messageCreate", async (msg) => {
   }
 });
 
-moderation.on("muteMember", async (data) => {
+moderation.on("muteCreate", async (data) => {
   console.log("Emitted");
   const guild = client.guilds.cache.get(data.guildID)!;
   const channel = guild.channels.cache.get(data.channelID) as TextChannel;
