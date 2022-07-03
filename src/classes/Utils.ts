@@ -182,7 +182,6 @@ export class Utils extends TypedEmitter<Events> {
         }
 
         if (!data.mutes) continue;
-
         for (let i = 0; i < data.mutes.length; i++) {
           const mute = data.mutes[i];
 
@@ -226,6 +225,12 @@ export class Utils extends TypedEmitter<Events> {
 
                 mute.unmutedAt = Date.now();
                 this.emit("muteEnd", mute);
+
+                await this.database.setProp(
+                  member.guild.id,
+                  "mutes",
+                  data.mutes.filter((_data) => _data.memberID !== mute.memberID)
+                );
               } catch (err) {
                 return rej(this.logger.error(err.message));
               }
@@ -241,7 +246,7 @@ export class Utils extends TypedEmitter<Events> {
   /**
    * Method that create Timeout with Promise
    *
-   * @param {number} ms Milliseconds
+   * @param {number} ms Time in milliseconds
    * @returns {Promise<unknown>}
    */
   wait(ms: number): Promise<unknown> {

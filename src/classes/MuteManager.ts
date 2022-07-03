@@ -273,7 +273,7 @@ export class MuteManager extends TypedEmitter<Events> {
           await this.utils.database.setProp(
             member.guild.id,
             "mutes",
-            data.mutes.filter((muteData) => muteData.guildID !== mute.guildID)
+            data.mutes.filter((muteData) => muteData.memberID !== mute.memberID)
           );
 
           return res(mute);
