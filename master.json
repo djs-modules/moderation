@@ -2,7 +2,7 @@
  "meta": {
   "generator": "0.11.1",
   "format": 22,
-  "date": 1656654533020
+  "date": 1656868158237
  },
  "custom": {
   "general": {
@@ -11,7 +11,7 @@
     "welcome": {
      "name": "Welcome",
      "type": "md",
-     "content": "## Welcome!\n\n<strong>Welcome, this is '@djs-modules/moderation' module!</strong> <br />\n<strong>\"@djs-modules/moderation\" is a module that allows you to make a moderation system in your Discord bot.</strong>\n\n## Features\n\n<span><strong>[🔑] Built in TypeScript</strong></span> <br />\n<span><strong>[⚙] 100% Promise-based</strong></span> <br />\n<span><strong>[🙂] TypeScript Support</strong></span> <br />\n<span><strong>[👍] Discord.JS v13</strong></span>\n\n## Requirements\n\n<span><strong>[1] [NodeJS v16 or Above](https://nodejs.org/)</strong></span> <br />\n<span><strong>[2] [Discord.JS](https://npmjs.com/package/discord.js/)</strong></span> <br />\n\n## Quick Example\n\n```js\nconst { Client, Intents } = require(\"discord.js\");\nconst { Moderation } = require(\"@djs-modules/moderation\");\n\nconst client = new Client({\n  intents: [\n    \"GUILDS\",\n    \"GUILD_MESSAGES\",\n    \"GUILD_PRESENCES\",\n    \"GUILD_MEMBERS\",\n    \"GUILD_BANS\",\n  ],\n});\n\nconst moderation = new Moderation(client, {\n  dbPath: \"./\",\n  locale: \"en-US\",\n  defaultSystems: {\n    autoRole: false,\n    antiSpam: false,\n    antiInvite: false,\n    antiJoin: false,\n    antiLink: false,\n    blacklist: false,\n    ghostPing: false,\n    logSystem: false,\n  },\n});\n```\n\n## This module uses\n\n<span><strong>[1] [Discord.JS](https://npmjs.com/package/discord.js/)</strong></span> <br />\n<span><strong>[2] [colors](https://npmjs.com/package/colors/)</strong></span> <br />\n<span><strong>[3] [ms](https://npmjs.com/package/ms/)</strong></span> <br />\n<span><strong>[4] [node-fetch](https://npmjs.com/package/node-fetch/)</strong></span> <br />\n<span><strong>[5] [enmap (database)](https://npmjs.com/package/enmap/)</strong></span> <br />\n\n## Links\n\n<span><strong>[1] [Documentation (soon)](https://djs-modules.js.org/)</strong></span> <br />\n<span><strong>[2] [Module Author](https://npmjs.com/~djs-modules/)</strong></span> <br />\n<span><strong>[3] [Support Server](https://discord.gg/zsTgXs24k2/)</strong></span>\n",
+     "content": "## Welcome!\n\n<strong>Welcome, this is '@djs-modules/moderation' module!</strong> <br />\n<strong>\"@djs-modules/moderation\" is a module that allows you to make a moderation system in your Discord bot.</strong>\n\n## Features\n\n<span><strong>[🔑] Built in TypeScript</strong></span> <br />\n<span><strong>[⚙] 100% Promise-based</strong></span> <br />\n<span><strong>[🙂] TypeScript Support</strong></span> <br />\n<span><strong>[👍] Discord.JS v13</strong></span> <br />\n<span><strong>[❗] Remute if member rejoins server</strong></span>\n\n## Requirements\n\n<span><strong>[1] [NodeJS v16 or Above](https://nodejs.org/)</strong></span> <br />\n<span><strong>[2] [Discord.JS](https://npmjs.com/package/discord.js/)</strong></span> <br />\n\n## Quick Example\n\n```js\nconst { Client, Intents } = require(\"discord.js\");\nconst { Moderation } = require(\"@djs-modules/moderation\");\n\nconst client = new Client({\n  intents: [\n    \"GUILDS\",\n    \"GUILD_MESSAGES\",\n    \"GUILD_PRESENCES\",\n    \"GUILD_MEMBERS\",\n    \"GUILD_BANS\",\n  ],\n});\n\nconst moderation = new Moderation(client, {\n  dbPath: \"./\",\n  locale: \"en-US\",\n  defaultSystems: {\n    autoRole: false,\n    antiSpam: false,\n    antiInvite: false,\n    antiJoin: false,\n    antiLink: false,\n    blacklist: false,\n    ghostPing: false,\n    logSystem: false,\n  },\n});\n```\n\n## This module uses\n\n<span><strong>[1] [Discord.JS](https://npmjs.com/package/discord.js/)</strong></span> <br />\n<span><strong>[2] [colors](https://npmjs.com/package/colors/)</strong></span> <br />\n<span><strong>[3] [ms](https://npmjs.com/package/ms/)</strong></span> <br />\n<span><strong>[4] [node-fetch](https://npmjs.com/package/node-fetch/)</strong></span> <br />\n<span><strong>[5] [enmap (database)](https://npmjs.com/package/enmap/)</strong></span> <br />\n\n## Links\n\n<span><strong>[1] [Documentation (soon)](https://djs-modules.js.org/)</strong></span> <br />\n<span><strong>[2] [Module Author](https://npmjs.com/~djs-modules/)</strong></span> <br />\n<span><strong>[3] [Support Server](https://discord.gg/zsTgXs24k2/)</strong></span>\n",
      "path": "pages/general/welcome.md"
     }
    }
@@ -463,16 +463,6 @@
    "meta": {
     "line": 16,
     "file": "AutoRole.ts",
-    "path": "src/classes"
-   }
-  },
-  {
-   "name": "Base",
-   "description": "Base class that uses in all other classes.",
-   "access": "private",
-   "meta": {
-    "line": 4,
-    "file": "Base.ts",
     "path": "src/classes"
    }
   },
@@ -1018,7 +1008,7 @@
       ]
      ],
      "meta": {
-      "line": 80,
+      "line": 77,
       "file": "ImmunityUsers.ts",
       "path": "src/classes"
      }
@@ -1056,7 +1046,7 @@
       ]
      ],
      "meta": {
-      "line": 109,
+      "line": 102,
       "file": "ImmunityUsers.ts",
       "path": "src/classes"
      }
@@ -1172,7 +1162,12 @@
    "extends": [
     [
      [
-      "Base"
+      "TypedEmitter",
+      "<"
+     ],
+     [
+      "Events",
+      ">"
      ]
     ]
    ],
@@ -1215,7 +1210,7 @@
       ]
      ],
      "meta": {
-      "line": 51,
+      "line": 48,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1231,7 +1226,7 @@
       ]
      ],
      "meta": {
-      "line": 57,
+      "line": 54,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1247,7 +1242,7 @@
       ]
      ],
      "meta": {
-      "line": 63,
+      "line": 60,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1263,7 +1258,7 @@
       ]
      ],
      "meta": {
-      "line": 69,
+      "line": 66,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1279,7 +1274,7 @@
       ]
      ],
      "meta": {
-      "line": 75,
+      "line": 72,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1295,7 +1290,7 @@
       ]
      ],
      "meta": {
-      "line": 81,
+      "line": 78,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1311,7 +1306,7 @@
       ]
      ],
      "meta": {
-      "line": 87,
+      "line": 84,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1327,7 +1322,7 @@
       ]
      ],
      "meta": {
-      "line": 93,
+      "line": 90,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1343,23 +1338,7 @@
       ]
      ],
      "meta": {
-      "line": 99,
-      "file": "Moderation.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "isReady",
-     "description": "Module Ready State",
-     "type": [
-      [
-       [
-        "boolean"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 105,
+      "line": 96,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1369,8 +1348,20 @@
     {
      "name": "_init",
      "access": "private",
+     "returns": [
+      [
+       [
+        "Promise",
+        "<"
+       ],
+       [
+        "boolean",
+        ">"
+       ]
+      ]
+     ],
      "meta": {
-      "line": 114,
+      "line": 105,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1416,7 +1407,7 @@
       ]
      ],
      "meta": {
-      "line": 129,
+      "line": 121,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1450,7 +1441,7 @@
       ]
      ],
      "meta": {
-      "line": 160,
+      "line": 163,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1458,7 +1449,7 @@
    ],
    "events": [
     {
-     "name": "muteMember",
+     "name": "muteCreate",
      "params": [
       {
        "name": "id",
@@ -1563,13 +1554,13 @@
       }
      ],
      "meta": {
-      "line": 185,
+      "line": 194,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
     },
     {
-     "name": "unmuteMember",
+     "name": "muteEnd",
      "params": [
       {
        "name": "id",
@@ -1674,13 +1665,13 @@
       }
      ],
      "meta": {
-      "line": 200,
+      "line": 209,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
     },
     {
-     "name": "warnAdd",
+     "name": "warnCreate",
      "params": [
       {
        "name": "id",
@@ -1750,13 +1741,13 @@
       }
      ],
      "meta": {
-      "line": 215,
+      "line": 224,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
     },
     {
-     "name": "warnRemove",
+     "name": "warnDelete",
      "params": [
       {
        "name": "id",
@@ -1826,7 +1817,7 @@
       }
      ],
      "meta": {
-      "line": 227,
+      "line": 236,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1891,14 +1882,143 @@
       }
      ],
      "meta": {
-      "line": 239,
+      "line": 248,
+      "file": "Moderation.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "warnMute",
+     "params": [
+      {
+       "name": "guildID",
+       "description": "ID of the Guild",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "memberID",
+       "description": "ID of the Warned Member",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "moderatorID",
+       "description": "ID of the Moderator",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "channelID",
+       "description": "ID of the Channel",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "reason",
+       "description": "Reason of the Mute",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      }
+     ],
+     "meta": {
+      "line": 259,
+      "file": "Moderation.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "lockdownStart",
+     "params": [
+      {
+       "name": "channel",
+       "description": "Text Channel",
+       "type": [
+        [
+         [
+          "TextChannel"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "reason",
+       "description": "Lockdown Reason",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      }
+     ],
+     "meta": {
+      "line": 270,
+      "file": "Moderation.ts",
+      "path": "src/classes"
+     }
+    },
+    {
+     "name": "lockdownEnd",
+     "params": [
+      {
+       "name": "channel",
+       "description": "Text Channel",
+       "type": [
+        [
+         [
+          "TextChannel"
+         ]
+        ]
+       ]
+      },
+      {
+       "name": "reason",
+       "description": "Lockdown Reason",
+       "type": [
+        [
+         [
+          "string"
+         ]
+        ]
+       ]
+      }
+     ],
+     "meta": {
+      "line": 278,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
     }
    ],
    "meta": {
-    "line": 34,
+    "line": 31,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -1909,7 +2029,12 @@
    "extends": [
     [
      [
-      "Base"
+      "TypedEmitter",
+      "<"
+     ],
+     [
+      "Events",
+      ">"
      ]
     ]
    ],
@@ -1952,7 +2077,7 @@
       ]
      ],
      "meta": {
-      "line": 39,
+      "line": 46,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -1968,7 +2093,7 @@
       ]
      ],
      "meta": {
-      "line": 45,
+      "line": 52,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -1984,7 +2109,7 @@
       ]
      ],
      "meta": {
-      "line": 51,
+      "line": 58,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2000,7 +2125,7 @@
       ]
      ],
      "meta": {
-      "line": 57,
+      "line": 64,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2047,14 +2172,14 @@
       ]
      ],
      "meta": {
-      "line": 64,
+      "line": 71,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
     },
     {
      "name": "getRole",
-     "description": "This method getting Mute Role.",
+     "description": "This method returns Guild's Mute Role.",
      "params": [
       {
        "name": "guild",
@@ -2075,20 +2200,24 @@
         "<"
        ],
        [
-        "boolean",
+        "null",
+        "|"
+       ],
+       [
+        "Role",
         ">"
        ]
       ]
      ],
      "meta": {
-      "line": 84,
+      "line": 91,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
     },
     {
      "name": "getMute",
-     "description": "Method that finds Mute in Storage",
+     "description": "Method that finds Member's Mute in Database",
      "params": [
       {
        "name": "member",
@@ -2109,13 +2238,17 @@
         "<"
        ],
        [
+        "null",
+        "|"
+       ],
+       [
         "MutesData",
         ">"
        ]
       ]
      ],
      "meta": {
-      "line": 106,
+      "line": 113,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2205,7 +2338,7 @@
       ]
      ],
      "meta": {
-      "line": 128,
+      "line": 135,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2246,7 +2379,7 @@
       ]
      ],
      "meta": {
-      "line": 226,
+      "line": 234,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2320,7 +2453,7 @@
       ]
      ],
      "meta": {
-      "line": 284,
+      "line": 290,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
@@ -2388,30 +2521,27 @@
         "|"
        ],
        [
-        "null",
-        "|"
-       ],
-       [
         "boolean",
         ">"
        ]
       ]
      ],
      "meta": {
-      "line": 339,
+      "line": 345,
       "file": "MuteManager.ts",
       "path": "src/classes"
      }
     }
    ],
    "meta": {
-    "line": 22,
+    "line": 28,
     "file": "MuteManager.ts",
     "path": "src/classes"
    }
   },
   {
    "name": "SystemsManager",
+   "description": "Class that controls Guild Systems",
    "construct": {
     "name": "SystemsManager",
     "params": [
@@ -2451,7 +2581,7 @@
       ]
      ],
      "meta": {
-      "line": 31,
+      "line": 34,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2467,7 +2597,7 @@
       ]
      ],
      "meta": {
-      "line": 37,
+      "line": 40,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2483,7 +2613,7 @@
       ]
      ],
      "meta": {
-      "line": 43,
+      "line": 46,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2499,7 +2629,7 @@
       ]
      ],
      "meta": {
-      "line": 49,
+      "line": 52,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2550,7 +2680,7 @@
       ]
      ],
      "meta": {
-      "line": 56,
+      "line": 59,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2599,7 +2729,7 @@
       ]
      ],
      "meta": {
-      "line": 84,
+      "line": 87,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2644,7 +2774,7 @@
       ]
      ],
      "meta": {
-      "line": 112,
+      "line": 115,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
@@ -2678,14 +2808,14 @@
       ]
      ],
      "meta": {
-      "line": 128,
+      "line": 131,
       "file": "SystemsManager.ts",
       "path": "src/classes"
      }
     }
    ],
    "meta": {
-    "line": 21,
+    "line": 19,
     "file": "SystemsManager.ts",
     "path": "src/classes"
    }
@@ -2696,7 +2826,12 @@
    "extends": [
     [
      [
-      "Base"
+      "TypedEmitter",
+      "<"
+     ],
+     [
+      "Events",
+      ">"
      ]
     ]
    ],
@@ -2863,6 +2998,40 @@
      }
     },
     {
+     "name": "checkData",
+     "description": "Method that checking Guild's Database to match last version",
+     "params": [
+      {
+       "name": "guild",
+       "description": "Discord Guild",
+       "type": [
+        [
+         [
+          "Guild"
+         ]
+        ]
+       ]
+      }
+     ],
+     "returns": [
+      [
+       [
+        "Promise",
+        "<"
+       ],
+       [
+        "boolean",
+        ">"
+       ]
+      ]
+     ],
+     "meta": {
+      "line": 116,
+      "file": "Utils.ts",
+      "path": "src/classes"
+     }
+    },
+    {
      "name": "setData",
      "description": "Method that changes data in Storage",
      "params": [
@@ -2902,7 +3071,7 @@
       ]
      ],
      "meta": {
-      "line": 115,
+      "line": 154,
       "file": "Utils.ts",
       "path": "src/classes"
      }
@@ -2923,7 +3092,7 @@
       ]
      ],
      "meta": {
-      "line": 131,
+      "line": 170,
       "file": "Utils.ts",
       "path": "src/classes"
      }
@@ -2957,27 +3126,7 @@
       ]
      ],
      "meta": {
-      "line": 205,
-      "file": "Utils.ts",
-      "path": "src/classes"
-     }
-    },
-    {
-     "name": "checkOptions",
-     "returns": [
-      [
-       [
-        "Promise",
-        "<"
-       ],
-       [
-        "boolean",
-        ">"
-       ]
-      ]
-     ],
-     "meta": {
-      "line": 215,
+      "line": 241,
       "file": "Utils.ts",
       "path": "src/classes"
      }
@@ -3016,7 +3165,7 @@
       ]
      ],
      "meta": {
-      "line": 227,
+      "line": 251,
       "file": "Utils.ts",
       "path": "src/classes"
      }
@@ -3034,7 +3183,12 @@
    "extends": [
     [
      [
-      "Base"
+      "TypedEmitter",
+      "<"
+     ],
+     [
+      "Events",
+      ">"
      ]
     ]
    ],
@@ -3438,6 +3592,7 @@
     {
      "name": "locale",
      "description": "Date Locale (default 'en-US')",
+     "optional": true,
      "type": [
       [
        [
@@ -3449,6 +3604,7 @@
     {
      "name": "defaultSystems",
      "description": "Default Systems Values",
+     "optional": true,
      "type": [
       [
        [
@@ -3459,8 +3615,8 @@
     }
    ],
    "meta": {
-    "line": 18,
-    "file": "Base.ts",
+    "line": 286,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3478,6 +3634,7 @@
     {
      "name": "autoRole",
      "description": "Auto Role System",
+     "optional": true,
      "type": [
       [
        [
@@ -3489,6 +3646,7 @@
     {
      "name": "antiSpam",
      "description": "Anti Spam System",
+     "optional": true,
      "type": [
       [
        [
@@ -3500,6 +3658,7 @@
     {
      "name": "antiInvite",
      "description": "Anti Invite System",
+     "optional": true,
      "type": [
       [
        [
@@ -3511,6 +3670,7 @@
     {
      "name": "antiJoin",
      "description": "Anti Join System",
+     "optional": true,
      "type": [
       [
        [
@@ -3522,6 +3682,7 @@
     {
      "name": "antiLink",
      "description": "Anti Link System",
+     "optional": true,
      "type": [
       [
        [
@@ -3533,6 +3694,7 @@
     {
      "name": "blacklist",
      "description": "Blacklist System",
+     "optional": true,
      "type": [
       [
        [
@@ -3544,6 +3706,7 @@
     {
      "name": "ghostPing",
      "description": "Ghost Ping Detecting System",
+     "optional": true,
      "type": [
       [
        [
@@ -3554,8 +3717,8 @@
     }
    ],
    "meta": {
-    "line": 26,
-    "file": "Base.ts",
+    "line": 294,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3660,8 +3823,8 @@
     }
    ],
    "meta": {
-    "line": 38,
-    "file": "Base.ts",
+    "line": 306,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3766,11 +3929,38 @@
        ]
       ]
      ]
+    },
+    {
+     "name": "lockdowns",
+     "description": "Guild Lockdowns",
+     "type": [
+      [
+       [
+        "Array",
+        "<"
+       ],
+       [
+        "LockdownsData",
+        ">"
+       ]
+      ]
+     ]
+    },
+    {
+     "name": "systems",
+     "description": "Guild Systems",
+     "type": [
+      [
+       [
+        "ModuleSystems"
+       ]
+      ]
+     ]
     }
    ],
    "meta": {
-    "line": 51,
-    "file": "Base.ts",
+    "line": 319,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3869,8 +4059,70 @@
     }
    ],
    "meta": {
-    "line": 62,
-    "file": "Base.ts",
+    "line": 332,
+    "file": "Moderation.ts",
+    "path": "src/classes"
+   }
+  },
+  {
+   "name": "LockdownsData",
+   "description": "Lockdown Data",
+   "type": [
+    [
+     [
+      "Object"
+     ]
+    ]
+   ],
+   "props": [
+    {
+     "name": "id",
+     "description": "ID of Lockdown",
+     "type": [
+      [
+       [
+        "number"
+       ]
+      ]
+     ]
+    },
+    {
+     "name": "channelID",
+     "description": "Channel ID",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ]
+    },
+    {
+     "name": "reason",
+     "description": "Lockdown Reason",
+     "type": [
+      [
+       [
+        "string"
+       ]
+      ]
+     ]
+    },
+    {
+     "name": "date",
+     "description": "Lockdown Date",
+     "type": [
+      [
+       [
+        "number"
+       ]
+      ]
+     ]
+    }
+   ],
+   "meta": {
+    "line": 344,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3909,8 +4161,8 @@
     }
    ],
    "meta": {
-    "line": 74,
-    "file": "Base.ts",
+    "line": 353,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -3964,8 +4216,8 @@
     }
    ],
    "meta": {
-    "line": 81,
-    "file": "Base.ts",
+    "line": 360,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
@@ -4005,14 +4257,14 @@
     }
    ],
    "meta": {
-    "line": 89,
-    "file": "Base.ts",
+    "line": 368,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
   {
    "name": "AvaliableSystems",
-   "description": "* autorole\n* antispam\n* antiinvite\n* antijoin\n* antilink\n* ghostping",
+   "description": "* autoRole\n* antiSpam\n* antiInvite\n* antiJoin\n* antiLink\n* ghostPing",
    "type": [
     [
      [
@@ -4021,8 +4273,8 @@
     ]
    ],
    "meta": {
-    "line": 96,
-    "file": "Base.ts",
+    "line": 375,
+    "file": "Moderation.ts",
     "path": "src/classes"
    }
   }
