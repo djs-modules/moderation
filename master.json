@@ -2,7 +2,7 @@
  "meta": {
   "generator": "0.11.1",
   "format": 22,
-  "date": 1656868158237
+  "date": 1656890116884
  },
  "custom": {
   "general": {
@@ -3103,7 +3103,7 @@
      "params": [
       {
        "name": "ms",
-       "description": "Milliseconds",
+       "description": "Time in milliseconds",
        "type": [
         [
          [
@@ -3126,7 +3126,7 @@
       ]
      ],
      "meta": {
-      "line": 241,
+      "line": 246,
       "file": "Utils.ts",
       "path": "src/classes"
      }
@@ -3165,7 +3165,7 @@
       ]
      ],
      "meta": {
-      "line": 251,
+      "line": 256,
       "file": "Utils.ts",
       "path": "src/classes"
      }
