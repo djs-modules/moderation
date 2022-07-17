@@ -5,7 +5,7 @@ import { MuteManager } from "./MuteManager";
 import { Logger } from "./Logger";
 import { Utils } from "./Utils";
 
-interface userMap {
+interface UserMap {
   msgCount: number;
   lastMessage: Message;
   timer: NodeJS.Timeout;
@@ -20,7 +20,7 @@ export interface AntiSpam {
   utils: Utils;
   logger: Logger;
 
-  usersMap: Map<string, userMap>;
+  usersMap: Map<string, UserMap>;
 }
 
 /**

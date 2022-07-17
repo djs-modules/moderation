@@ -2,7 +2,7 @@ import {
   Client,
   GuildMember,
   Message,
-  MessageEmbed,
+  EmbedBuilder,
   Invite,
   TextChannel,
 } from "discord.js";
@@ -74,11 +74,11 @@ export class GuildSystems {
       try {
         const m = await member.kick("Anti-Join System.");
 
-        const embed = new MessageEmbed()
-          .setColor("BLURPLE")
+        const embed = new EmbedBuilder()
+          .setColor("Blurple")
           .setAuthor({
             name: m.user.username,
-            iconURL: m.displayAvatarURL({ dynamic: true }),
+            iconURL: m.displayAvatarURL({ size: 4096 }),
           })
           .setTitle("Anti-Join System.")
           .setDescription(
@@ -115,11 +115,11 @@ export class GuildSystems {
           return rej(this.logger.warn(err));
         });
 
-        const embed = new MessageEmbed()
-          .setColor("YELLOW")
+        const embed = new EmbedBuilder()
+          .setColor("Yellow")
           .setAuthor({
             name: message.author.username,
-            iconURL: message.author.displayAvatarURL({ dynamic: true }),
+            iconURL: message.author.displayAvatarURL({ size: 4096 }),
           })
           .setTitle("Anti-Link System.")
           .setDescription("**Links are restricted on this server!**");
@@ -169,11 +169,11 @@ export class GuildSystems {
       const immunityCheck = await this.utils.checkImmunity(invite);
       if (immunityCheck) return;
 
-      const embed = new MessageEmbed()
-        .setColor("YELLOW")
+      const embed = new EmbedBuilder()
+        .setColor("Yellow")
         .setAuthor({
           name: invite.inviter.username,
-          iconURL: invite.inviter.displayAvatarURL({ dynamic: true }),
+          iconURL: invite.inviter.displayAvatarURL({ size: 4096 }),
         })
         .setTitle("Anti-Invite System.")
         .setDescription(

@@ -10,36 +10,44 @@ export class Logger {
   public tag: string;
 
   constructor() {
-    this.tag = "[DM]";
+    this.tag = "[Moderation]";
   }
 
   /**
    * Logging Something
    *
-   * @param {String} message Message to Log
+   * @param {string} message Message to Log
    * @returns {void}
    */
   log(message: string): void {
-    return console.log(`${this.tag}: ${message}`);
+    const tag = colors.magenta(this.tag);
+
+    return console.log(`${tag}: ${message}`);
   }
 
   /**
    * Logging Something
    *
-   * @param {String} message Message to Log
+   * @param {string} message Message to Log
    * @returns {void}
    */
   warn(message: string): void {
-    return console.log(colors.yellow(`${this.tag}: ${message}`));
+    const tag = colors.magenta(this.tag);
+    const msg = colors.yellow(message);
+
+    return console.log(`${tag}: ${msg}`);
   }
 
   /**
    * Logging Something
    *
-   * @param {String} message Message to Log
+   * @param {string} message Message to Log
    * @returns {void}
    */
   error(message: string): void {
-    return console.log(colors.red(`${this.tag}: ${message}`));
+    const tag = colors.magenta(this.tag);
+    const msg = colors.red(message);
+
+    return console.log(`${tag}: ${msg}`);
   }
 }

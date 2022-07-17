@@ -10,7 +10,7 @@ import { Logger } from "./Logger";
 import { Utils } from "./Utils";
 
 // Discord.JS
-import { Client, TextChannel } from "discord.js";
+import { Client, IntentsBitField, TextChannel } from "discord.js";
 import { TypedEmitter } from "tiny-typed-emitter";
 
 export interface Moderation {
@@ -108,6 +108,21 @@ export class Moderation extends TypedEmitter<Events> {
    */
   private _init(): Promise<boolean> {
     return new Promise((res, rej) => {
+      const intents = new IntentsBitField(this.client.options.intents);
+      if (
+        !intents.has([
+          IntentsBitField.Flags.Guilds,
+          IntentsBitField.Flags.GuildMembers,
+          IntentsBitField.Flags.GuildMessages,
+        ])
+      ) {
+        this.logger.error(
+          "Moderation requires the following intents: Guilds, GuildMembers, GuildMessages"
+        );
+
+        return process.exit(1);
+      }
+
       this.client.on("ready", () => {
         this.utils.checkMutes();
       });
@@ -135,7 +150,7 @@ export class Moderation extends TypedEmitter<Events> {
           [
             {
               id: channel.guild.roles.everyone,
-              deny: ["SEND_MESSAGES"],
+              deny: ["SendMessages"],
             },
           ],
           reason
@@ -172,7 +187,7 @@ export class Moderation extends TypedEmitter<Events> {
         .set([
           {
             id: channel.guild.roles.everyone,
-            allow: ["SEND_MESSAGES"],
+            allow: ["SendMessages"],
           },
         ])
         .then(async () => {
@@ -359,7 +374,7 @@ export class Moderation extends TypedEmitter<Events> {
 
 /**
  * Users Map
- * @typedef {Object} userMap
+ * @typedef {Object} UserMap
  * @prop {number} msgCount Count of Sent User Messages
  * @prop {Message} lastMessage Last Message by User
  * @prop {NodeJS.Timeout} timer Timeout
