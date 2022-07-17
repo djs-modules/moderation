@@ -2,7 +2,7 @@
  "meta": {
   "generator": "0.11.1",
   "format": 22,
-  "date": 1656890116884
+  "date": 1658099323794
  },
  "custom": {
   "general": {
@@ -1072,7 +1072,7 @@
        "type": [
         [
          [
-          "String"
+          "string"
          ]
         ]
        ]
@@ -1086,7 +1086,7 @@
       ]
      ],
      "meta": {
-      "line": 36,
+      "line": 41,
       "file": "Logger.ts",
       "path": "src/classes"
      }
@@ -1101,7 +1101,7 @@
        "type": [
         [
          [
-          "String"
+          "string"
          ]
         ]
        ]
@@ -1115,7 +1115,7 @@
       ]
      ],
      "meta": {
-      "line": 36,
+      "line": 41,
       "file": "Logger.ts",
       "path": "src/classes"
      }
@@ -1130,7 +1130,7 @@
        "type": [
         [
          [
-          "String"
+          "string"
          ]
         ]
        ]
@@ -1144,7 +1144,7 @@
       ]
      ],
      "meta": {
-      "line": 36,
+      "line": 41,
       "file": "Logger.ts",
       "path": "src/classes"
      }
@@ -1407,7 +1407,7 @@
       ]
      ],
      "meta": {
-      "line": 121,
+      "line": 136,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1441,7 +1441,7 @@
       ]
      ],
      "meta": {
-      "line": 163,
+      "line": 178,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1554,7 +1554,7 @@
       }
      ],
      "meta": {
-      "line": 194,
+      "line": 209,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1665,7 +1665,7 @@
       }
      ],
      "meta": {
-      "line": 209,
+      "line": 224,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1741,7 +1741,7 @@
       }
      ],
      "meta": {
-      "line": 224,
+      "line": 239,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1817,7 +1817,7 @@
       }
      ],
      "meta": {
-      "line": 236,
+      "line": 251,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1882,7 +1882,7 @@
       }
      ],
      "meta": {
-      "line": 248,
+      "line": 263,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1947,7 +1947,7 @@
       }
      ],
      "meta": {
-      "line": 259,
+      "line": 274,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -1979,7 +1979,7 @@
       }
      ],
      "meta": {
-      "line": 270,
+      "line": 285,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -2011,7 +2011,7 @@
       }
      ],
      "meta": {
-      "line": 278,
+      "line": 293,
       "file": "Moderation.ts",
       "path": "src/classes"
      }
@@ -3615,7 +3615,7 @@
     }
    ],
    "meta": {
-    "line": 286,
+    "line": 301,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -3717,7 +3717,7 @@
     }
    ],
    "meta": {
-    "line": 294,
+    "line": 309,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -3823,7 +3823,7 @@
     }
    ],
    "meta": {
-    "line": 306,
+    "line": 321,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -3959,7 +3959,7 @@
     }
    ],
    "meta": {
-    "line": 319,
+    "line": 334,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -4059,7 +4059,7 @@
     }
    ],
    "meta": {
-    "line": 332,
+    "line": 347,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -4121,7 +4121,7 @@
     }
    ],
    "meta": {
-    "line": 344,
+    "line": 359,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -4161,13 +4161,13 @@
     }
    ],
    "meta": {
-    "line": 353,
+    "line": 368,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
   },
   {
-   "name": "userMap",
+   "name": "UserMap",
    "description": "Users Map",
    "type": [
     [
@@ -4216,7 +4216,7 @@
     }
    ],
    "meta": {
-    "line": 360,
+    "line": 375,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -4257,7 +4257,7 @@
     }
    ],
    "meta": {
-    "line": 368,
+    "line": 383,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
@@ -4273,7 +4273,7 @@
     ]
    ],
    "meta": {
-    "line": 375,
+    "line": 390,
     "file": "Moderation.ts",
     "path": "src/classes"
    }
